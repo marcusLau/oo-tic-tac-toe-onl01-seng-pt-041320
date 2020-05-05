@@ -126,6 +126,7 @@ class TicTacToe
     if winner_combo == false
       return nil
     else
+      # ternary operator didn't work here... 
       if @board[winner_combo[0]] == "X"
         return "X"
       else
