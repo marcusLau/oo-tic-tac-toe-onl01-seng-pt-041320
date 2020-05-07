@@ -47,6 +47,7 @@ class TicTacToe
     end
   end
   
+  # For every token X || O increment turn counter and return
   def turn_count
     count = 0
     for i in 0..@board.length-1
@@ -60,7 +61,7 @@ class TicTacToe
   # if current turn count is even, next token is X
   # if current turn count is odd, next token is O
   def current_player
-    total_turns = turn_count
+    total_turns = turn_count # gets the total amount of turns taken SO FAR
     token = nil 
     if total_turns % 2 == 0
       token = "X"
@@ -79,12 +80,13 @@ class TicTacToe
       move(index, token)
       display_board
     else
-      turn 
+      turn # prompts user for next input if board space inputted is not valid
     end
   end
   
+  # for each combo within win_combos check if these positions exist within the current @board state
   def won?
-    WIN_COMBINATIONS.each do |combo|
+    WIN_COMBINATIONS.each do |combo| # [1, 2, 3] @board[1, 2, 3]
       # get all 3 indices of winning combo
       win_index_0 = combo[0]
       win_index_1 = combo[1]
@@ -136,7 +138,7 @@ class TicTacToe
   end
   
   def play
-    until over? == true
+    until over? || draw? == true
       turn
     end
     
@@ -148,3 +150,4 @@ class TicTacToe
   end
       
 end
+
