@@ -40,11 +40,7 @@ class TicTacToe
   
   # checks if index is a valid move
   def valid_move?(index)
-    if ( !position_taken?(index) && index.between?(0,8) )
-      return true
-    else
-      return false
-    end
+    !position_taken?(index) && index.between?(0,8) 
   end
   
   # For every token X || O increment turn counter and return
@@ -61,14 +57,7 @@ class TicTacToe
   # if current turn count is even, next token is X
   # if current turn count is odd, next token is O
   def current_player
-    total_turns = turn_count # gets the total amount of turns taken SO FAR
-    token = nil 
-    if total_turns % 2 == 0
-      token = "X"
-    else
-      token = "O"
-    end
-    return token
+    turn_count % 2 == 0 ? "X" : "O"
   end
   
   def turn
@@ -125,20 +114,16 @@ class TicTacToe
   
   def winner
     winner_combo = won?
-    if winner_combo == false
+    if !winner_combo
       return nil
     else
       # ternary operator didn't work here... 
-      if @board[winner_combo[0]] == "X"
-        return "X"
-      else
-        return "O"
-      end
+      @board[winner[0]] == "X" ? "X" : "O"
     end
   end
   
   def play
-    until over? || draw? == true
+    until over? || draw?
       turn
     end
     
